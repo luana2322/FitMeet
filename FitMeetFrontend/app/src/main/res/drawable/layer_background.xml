@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Lớp viền đen -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/black"/> <!-- Phần bên trong trong suốt -->
+            <stroke android:width="5dp" android:color="@android:color/black"/> <!-- Đường viền đen -->
+        </shape>
+    </item>
+
+    <!-- Lớp nền -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/white"/> <!-- Màu nền -->
+        </shape>
+    </item>
+</layer-list>

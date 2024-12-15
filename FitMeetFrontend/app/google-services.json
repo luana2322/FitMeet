@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "603124002525",
+    "firebase_url": "https://videocallapp-c58b1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "videocallapp-c58b1",
+    "storage_bucket": "videocallapp-c58b1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603124002525:android:65ceb8e82818c4d029b534",
+        "android_client_info": {
+          "package_name": "com.ravisaharan.videocall"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-aPLpwBOPOGjjRFFG5vAKofkpQb4fD4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/home_svgrepo_com"
+        android:iconTint="@color/white" />
+
+    <item
+        android:id="@+id/chat"
+        android:title="Chat"
+        android:icon="@drawable/baseline_chat_24"
+        android:iconTint="@color/white" />
+
+    <item
+        android:id="@+id/schedule"
+        android:title="Schedule"
+        android:icon="@drawable/permissionx_ic_notification"
+        android:iconTint="@color/white"
+        />
+
+    <!--    <item-->
+    <!--        android:id="@+id/videocall"-->
+    <!--        android:title="Videocall"-->
+    <!--        android:icon="@drawable/video_call"/>-->
+
+    <item
+        android:id="@+id/profile"
+        android:title="profile"
+        android:icon="@drawable/user"
+        android:iconTint="?android:attr/colorControlNormal" />
+
+</menu>
