@@ -177,9 +177,6 @@ public class LoginFirst extends AppCompatActivity {
                     // Gán dữ liệu từ API vào danh sách coach
                     studentlogged = response.body();
 
-                    Intent intent = new Intent(LoginFirst.this, HomeActivity.class);
-
-                    intent.putExtra("studentloggedid", String.valueOf(studentlogged.getStudent_id()));
 
 //                    set session
                     SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
@@ -190,7 +187,6 @@ public class LoginFirst extends AppCompatActivity {
                 //                  end  set session
 
                     init(username);
-                    startActivity(intent);
 
                 } else {
                     Toast.makeText(LoginFirst.this, "Không thể lấy dữ liệu", Toast.LENGTH_SHORT).show();
@@ -225,7 +221,11 @@ public class LoginFirst extends AppCompatActivity {
                                 mainRepository.login(username,getApplicationContext(),()->{
                                     //if successful then move to call activity
 
+                                    Intent intent = new Intent(LoginFirst.this, HomeActivity.class);
 
+
+//                                    intent.putExtra("studentloggedid", String.valueOf(studentlogged.getStudent_id()));
+                                    startActivity(intent);
 
 //                                    startActivity(new Intent(LoginFirst.this,CallActivity.class)  );
 

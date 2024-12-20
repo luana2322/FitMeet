@@ -35,8 +35,8 @@ public class VideoCall extends AppCompatActivity implements MainRepository.Liste
         });
 
 
-        Intent intent1 = getIntent();
-        coachName = intent1.getStringExtra("coachName");
+//        Intent intent1 = getIntent();
+//        coachName = intent1.getStringExtra("coachName");
 
         videocallBinding = ActivityVideoCallBinding.inflate(getLayoutInflater());
         setContentView(videocallBinding.getRoot());
@@ -45,10 +45,12 @@ public class VideoCall extends AppCompatActivity implements MainRepository.Liste
 
     public void init(){
         mainRepository=MainRepository.getInstance();
+        videocallBinding.callBtn.setOnClickListener(v->{
             //make call request
-            mainRepository.sendCallRequest(coachName,()->{
+            mainRepository.sendCallRequest(videocallBinding.targetUserNameEt.getText().toString(),()->{
                 Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
             });
+        });
 
         mainRepository.initLocalView(videocallBinding.localView);
         mainRepository.initRemoteView(videocallBinding.remoteView);

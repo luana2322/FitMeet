@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +56,7 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
 
     private ApiServiceStudent apiServiceStudent;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,42 +92,52 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
             fetchnameCallforCoach(id_people_call, () -> {
                 // Thực hiện hành động khi đã có callName
                 nameChat.setText(callName);
+                init(callName);
             });
         }
 
         if (intent.getStringExtra("coachName") != null) {
             id_people_call = intent.getStringExtra("coachName");
             fetchnameCallforStudent(id_people_call, () -> {
+                nameChat.setText(callName);
+                init(callName);
                 // Thực hiện hành động khi đã có callName
 //                Toast.makeText(this, "Coach Name: " + callName, Toast.LENGTH_SHORT).show();
             });
         }
 //initlogin(callName);
 
-        mainRepository = MainRepository.getInstance();
-        call_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Xử lý khi ImageView được click
-                init(callName);
-            }
-        });
+//        call_icon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Xử lý khi ImageView được click
+//                init(callName);
+//            }
+//        });
 
     }
 
 
     public void init(String username) {
+        mainRepository=MainRepository.getInstance();
 
-//        callBinding.callBtn.setOnClickListener(v->{
+        callBinding.callvideoicon.setOnClickListener(v->{
+            //make call request
+            mainRepository.sendCallRequest(username,()->{
+                Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
+            });
+        });
+
+//        call_icon.setOnClickListener(v->{
 //            //make call request
-//            mainRepository.sendCallRequest(callBinding.targetUserNameEt.getText().toString(),()->{
+//            mainRepository.sendCallRequest(username,()->{
 //                Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
 //            });
 //        });
-        //make call request
-        mainRepository.sendCallRequest(username, () -> {
-            Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
-        });
+//        //make call request
+//        mainRepository.sendCallRequest(username, () -> {
+//            Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
+//        });
 
         mainRepository.initLocalView(callBinding.localView);
         mainRepository.initRemoteView(callBinding.remoteView);
@@ -135,12 +147,14 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
             if (data.getType() == DataModelType.StartCall) {
                 runOnUiThread(() -> {
                     String text = data.getSender() + " is calling you..";
-                    callBinding.incomingNameTV.setText(text);
+//                    callBinding.incomingNameTV.setText(text);
+                    callBinding.tvHeader.setVisibility(View.GONE);
                     callBinding.incomingCallLayout.setVisibility(View.VISIBLE);
                     callBinding.acceptButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             //start call
+                            callBinding.tvHeader.setVisibility(View.GONE);
                             mainRepository.startCall(data.getSender());
                             callBinding.incomingCallLayout.setVisibility(View.GONE);
                         }
@@ -189,11 +203,88 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
 
     }
 
+//    public void init(){
+//        mainRepository=MainRepository.getInstance();
+//        callBinding.callBtn.setOnClickListener(v->{
+//            //make call request
+//            mainRepository.sendCallRequest(callBinding.targetUserNameEt.getText().toString(),()->{
+//                Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
+//            });
+//        });
+//
+//        mainRepository.initLocalView(callBinding.localView);
+//        mainRepository.initRemoteView(callBinding.remoteView);
+//        mainRepository.listener=this;
+//
+//        mainRepository.subscribeForLatestEvent(data->{
+//            if(data.getType()== DataModelType.StartCall) {
+//                runOnUiThread(()->{
+//                    String text = data.getSender() + " is calling you..";
+//                    callBinding.incomingNameTV.setText(text);
+//                    callBinding.incomingCallLayout.setVisibility(View.VISIBLE);
+//                    callBinding.acceptButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            //start call
+//                            mainRepository.startCall(data.getSender());
+//                            callBinding.incomingCallLayout.setVisibility(View.GONE);
+//                        }
+//                    });
+//                    callBinding.rejectButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            callBinding.incomingCallLayout.setVisibility(View.GONE);
+//                        }
+//                    });
+//                });
+//            }
+//        });
+//
+//        callBinding.switchCameraButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mainRepository.switchCamera();
+//            }
+//        });
+//
+//        callBinding.micButton.setOnClickListener(v->{
+//            if(isMicMuted){
+//                callBinding.micButton.setImageResource(R.drawable.ic_baseline_mic_off_24);
+//            }else{
+//                callBinding.micButton.setImageResource(R.drawable.ic_baseline_mic_24);
+//            }
+//            mainRepository.toggleAudio(isMicMuted);
+//            isMicMuted=!isMicMuted;
+//        });
+//
+//        callBinding.videoButton.setOnClickListener(v->{
+//            if(isCameraMuted){
+//                callBinding.videoButton.setImageResource(R.drawable.ic_baseline_videocam_off_24);
+//            }else{
+//                callBinding.videoButton.setImageResource(R.drawable.ic_baseline_videocam_24);
+//            }
+//            mainRepository.toggleVideo(isCameraMuted);
+//            isCameraMuted=!isCameraMuted;
+//        });
+//
+//        callBinding.endCallButton.setOnClickListener(v->{
+//            mainRepository.endCall();
+//            finish();
+//        });
+//
+//    }
     @Override
     public void webrtcConnected() {
         runOnUiThread(() -> {
             callBinding.incomingCallLayout.setVisibility(View.GONE);
-            callBinding.whoToCallLayout.setVisibility(View.GONE);
+
+            LinearLayout tvHeader = findViewById(R.id.tvHeader);
+            ViewGroup.LayoutParams params = tvHeader.getLayoutParams();
+            params.height = 0;  // Thay đổi chiều cao thành 0 khi ẩn
+            tvHeader.setLayoutParams(params);
+            tvHeader.setVisibility(View.GONE);
+
+//           callBinding.whoToCallLayout.setVisibility(View.GONE);
             callBinding.callLayout.setVisibility(View.VISIBLE);
         });
 

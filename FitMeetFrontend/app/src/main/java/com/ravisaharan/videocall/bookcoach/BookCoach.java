@@ -3,6 +3,7 @@ package com.ravisaharan.videocall.bookcoach;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +22,15 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.ravisaharan.videocall.ApiClient;
 import com.ravisaharan.videocall.api.ApiServiceCoach;
+import com.ravisaharan.videocall.api.ApiServiceSchedule;
+import com.ravisaharan.videocall.chat.Chat;
 import com.ravisaharan.videocall.databinding.ActivityBookCoachBinding;
 
 import com.ravisaharan.videocall.R;
+import com.ravisaharan.videocall.dto.ScheduleDto;
 import com.ravisaharan.videocall.home.HomeActivity;
 import com.ravisaharan.videocall.model.Coache;
+import com.ravisaharan.videocall.model.Schedule;
 
 import java.util.Calendar;
 
@@ -40,10 +45,11 @@ public class BookCoach extends AppCompatActivity {
     private TextView tvSelectedTime, coachName, description, henkham, goikham,tuvan, chungchi  ;
     private Button btnSelectTime, btn_book;
     private ApiServiceCoach apiService;
+    private ApiServiceSchedule apiServiceSchedule;
     String coachId;
     ImageButton backtohome;
-
-
+    String selectedDateTime;
+    int userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +65,12 @@ public class BookCoach extends AppCompatActivity {
         coachId = intent.getStringExtra("coachId");
 //        Toast.makeText(this,"hello"+ coachId, Toast.LENGTH_SHORT).show();
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+         userId = sharedPreferences.getInt("studentloggedid", -1);
+
+
         apiService = ApiClient.getRetrofitInstance().create(ApiServiceCoach.class);
+        apiServiceSchedule = ApiClient.getRetrofitInstance().create(ApiServiceSchedule.class);
         fetchCoaches(coachId);
 
         backtohome=findViewById(R.id.backtohome);
@@ -71,6 +82,30 @@ public class BookCoach extends AppCompatActivity {
 
                 startActivity(intent);
             }
+        });
+        
+        btn_book=findViewById(R.id.btn_book_appointment);
+        btn_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Xử lý sự kiện khi Button được nhấn
+             if (selectedDateTime==null){
+                 Toast.makeText(BookCoach.this, "Vui lòng chọn thời gian cuộc hẹn!!!!!", Toast.LENGTH_SHORT).show();
+             }
+                ScheduleDto scheduleDto=new ScheduleDto(userId,Integer.parseInt(coachId),selectedDateTime);
+                createSchedule(scheduleDto);
+                Toast.makeText(BookCoach.this, "Tạo cuộc hẹn thành công!!!", Toast.LENGTH_SHORT).show();
+                try {
+                    // Tạm dừng trong 1 giây (1000 milliseconds)
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // Xử lý nếu luồng bị gián đoạn
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(BookCoach.this, Chat.class);
+
+                startActivity(intent);
+             }
         });
 
 
@@ -111,7 +146,7 @@ public class BookCoach extends AppCompatActivity {
                 calendar.set(Calendar.MINUTE, selectedMinute);
 
                 // Hiển thị thời gian đã chọn
-                String selectedDateTime = String.format("%02d/%02d/%04d %02d:%02d",
+                 selectedDateTime = String.format("%02d/%02d/%04d %02d:%02d",
                         selectedDay, selectedMonth + 1, selectedYear, selectedHour, selectedMinute);
                 tvSelectedTime.setText("Thời gian đã chọn: " + selectedDateTime);
             }, hour, minute, true);
@@ -155,6 +190,33 @@ public class BookCoach extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Coache> call, Throwable t) {
+                Toast.makeText(BookCoach.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("API_ERROR", t.getMessage());
+            }
+        });
+
+    }
+
+    private void createSchedule(ScheduleDto scheduleDto) {
+        apiServiceSchedule.createSchedule(scheduleDto).enqueue(new Callback<Schedule>() {
+            @Override
+            public void onResponse(Call<Schedule> call, Response<Schedule> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Schedule schedule = response.body();
+                    // Xử lý kết quả
+
+                } else {
+                    System.err.println("Response failed: " + response.code());
+
+                    Toast.makeText(BookCoach.this, "coach name"+response.code(), Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Schedule> call, Throwable t) {
                 Toast.makeText(BookCoach.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("API_ERROR", t.getMessage());
             }

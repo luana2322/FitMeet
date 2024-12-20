@@ -31,13 +31,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity
-{
+public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding biding;
     private RecyclerView recyclerView;
     private CoachAdapter coachAdapter;
     private List<Coache> coacheList = new ArrayList<>();
     private ApiServiceCoach apiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,6 @@ public class HomeActivity extends AppCompatActivity
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setSelectedItemId(R.id.home);
-
 
 
         // Initialize RecyclerView and Adapter
@@ -66,12 +65,12 @@ public class HomeActivity extends AppCompatActivity
         int coachId = sharedPreferences.getInt("coacheloggedid", -1);
 
 
-        if (userId!=-1){
-    // Fetch students from API
-    fetchCoaches();
-}else{
-    Toast.makeText(this, "Đây là Coach", Toast.LENGTH_SHORT).show();
-}
+        if (userId != -1) {
+            // Fetch students from API
+            fetchCoaches();
+        } else {
+            Toast.makeText(this, "Đây là Coach", Toast.LENGTH_SHORT).show();
+        }
 
 
         bottomNavigationView.setOnItemSelectedListener(
@@ -137,8 +136,6 @@ public class HomeActivity extends AppCompatActivity
             }
         });
     }
-
-
 
 
 }
