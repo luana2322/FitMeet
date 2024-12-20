@@ -3,73 +3,125 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/mainchat"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".chat.ChatContent">
+    android:layout_height="match_parent">
 
 
     <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:context=".ui.CallActivity">
 
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:id="@+id/incomingCallLayout"-->
+<!--            android:visibility="gone"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_alignParentTop="true">-->
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_weight="6"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="someone is calling"-->
+<!--                android:id="@+id/incomingNameTV"/>-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1.5"-->
+<!--                android:src="@drawable/ic_accept"-->
+<!--                android:padding="15dp"-->
+<!--                android:id="@+id/acceptButton"/>-->
+<!--            <ImageView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1.5"-->
+<!--                android:src="@drawable/ic_reject"-->
+<!--                android:padding="15dp"-->
+<!--                android:id="@+id/rejectButton"/>-->
+
+<!--        </LinearLayout>-->
+<!-- start test        -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
             android:id="@+id/incomingCallLayout"
             android:visibility="gone"
-            android:orientation="horizontal"
-            android:layout_alignParentTop="true">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="6"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:text="someone is calling"
-                android:id="@+id/incomingNameTV"/>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:src="@drawable/ic_accept"
-                android:padding="15dp"
-                android:id="@+id/acceptButton"/>
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:src="@drawable/ic_reject"
-                android:padding="15dp"
-                android:id="@+id/rejectButton"/>
-
-        </LinearLayout>
-        <RelativeLayout
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/incomingCallLayout"
-            android:id="@+id/whoToCallLayout">
-            <EditText
-                android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@android:color/black">
+
+            <!-- Caller Profile Picture -->
+            <ImageView
+                android:id="@+id/caller_profile_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/dog"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:clipToOutline="true"
+                android:elevation="4dp" />
+
+            <!-- Caller Name -->
+            <TextView
+                android:id="@+id/caller_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="John Doe"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <!-- Incoming Call Label -->
+            <TextView
+                android:id="@+id/incoming_call_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Incoming Video Call..."
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <!-- Buttons Container -->
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="who to call ?"
-                android:layout_margin="30dp"
-                android:id="@+id/targetUserNameEt"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/rounded_button"
-                android:layout_below="@id/targetUserNameEt"
-                android:layout_marginHorizontal="30dp"
-                android:text="call"
-                android:id="@+id/callBtn"/>
-        </RelativeLayout>
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- Accept Button -->
+                <ImageButton
+                    android:id="@+id/acceptButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_accept"
+                    android:background="@android:color/transparent" />
+
+                <!-- Reject Button -->
+                <ImageButton
+                    android:id="@+id/rejectButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_reject"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+
+        </LinearLayout>
+<!-- end test-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:id="@+id/callLayout"
@@ -160,6 +212,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="visible"
         android:background="@drawable/gradient_background"
         android:padding="16dp"
         tools:ignore="MissingConstraints">

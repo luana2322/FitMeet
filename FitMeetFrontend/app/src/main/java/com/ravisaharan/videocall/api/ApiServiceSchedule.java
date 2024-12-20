@@ -1,5 +1,6 @@
 package com.ravisaharan.videocall.api;
 
+import com.ravisaharan.videocall.dto.ScheduleDto;
 import com.ravisaharan.videocall.model.Schedule;
 
 import java.util.List;
@@ -13,8 +14,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiServiceSchedule {    // CREATE
-    @POST("schedule")
-    Call<Schedule> createSchedule(@Body Schedule schedule);
+    @POST("/createdschedule")
+    Call<Schedule> createSchedule(@Body ScheduleDto schedule);
 
     // READ ALL
     @GET("/getallschedule")
