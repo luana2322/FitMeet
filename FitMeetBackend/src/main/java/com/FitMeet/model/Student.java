@@ -39,4 +39,9 @@ public class Student {
     )
     @JsonManagedReference
     private List<Review> reviewList;
+    @OneToMany(
+            mappedBy = "student"
+    )
+    @JsonManagedReference
+    private List<StudentNotification> studentNotificationList;
 }

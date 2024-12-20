@@ -1,5 +1,6 @@
 package com.FitMeet.service;
 
+import com.FitMeet.dto.ScheduleDto;
 import com.FitMeet.model.Chat;
 import com.FitMeet.model.Schedule;
 
@@ -12,7 +13,7 @@ public interface ScheduleService {
 
     void deteleById(Long id);
 
-    Schedule save(Schedule attachment);
+    Schedule save(ScheduleDto attachment);
 
     Schedule update(Schedule attachment);
 }

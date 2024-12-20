@@ -1,5 +1,6 @@
 package com.FitMeet.controller;
 
+import com.FitMeet.dto.ScheduleDto;
 import com.FitMeet.model.Coache;
 import com.FitMeet.model.Schedule;
 import com.FitMeet.repository.ScheduleRepository;
@@ -23,8 +24,8 @@ private ScheduleRepository scheduleRepository;
 //    public ResponseEntity<Schedule> addproject(@RequestBody Schedule schedule
 //            , @RequestParam("userId") Long userId) {
     @PostMapping("/createdschedule")
-    public ResponseEntity<Schedule> addproject(@RequestBody Schedule schedule) {
-
+    public ResponseEntity<Schedule> addproject(@RequestBody ScheduleDto schedule) {
+System.out.println("đã vô");
         Schedule projectsaved = scheduleServiceImpl.save(schedule);
 
 

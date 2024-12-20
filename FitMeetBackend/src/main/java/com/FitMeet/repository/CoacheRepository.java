@@ -13,7 +13,7 @@ public interface CoacheRepository  extends JpaRepository<Coache, Long> {
             " from coache c\n" +
             "join schedule s\n" +
             "on c.coach_id=s.coach_id\n" +
-            "where s.student_id=    ?1\n",nativeQuery = true)
+            "where s.student_id=?1\n",nativeQuery = true)
     List<Coache> findListCoachByStudentId(Long userId);
 
 

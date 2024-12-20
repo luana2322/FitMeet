@@ -42,4 +42,10 @@ public class Coache {
     )
     @JsonManagedReference
     private List<Review> reviewList;
+
+    @OneToMany(
+            mappedBy = "coache"
+    )
+    @JsonManagedReference
+    private List<CoachNotification> coachNotificationList;
 }
