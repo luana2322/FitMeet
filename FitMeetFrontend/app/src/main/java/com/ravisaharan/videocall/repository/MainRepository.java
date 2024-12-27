@@ -89,6 +89,7 @@ public class MainRepository implements WebRTCClient.Listener {
     }
 
     public void initLocalView(SurfaceViewRenderer view){
+
         webRTCClient.initLocalSurfaceView(view);
     }
 

@@ -22,6 +22,13 @@
         android:theme="@style/Theme.VideoCall"
         tools:targetApi="31">
         <activity
+            android:name=".ui.SignUpActivity"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".Message.MainActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:theme="@style/Theme.VideoCall" /> -->
+        <activity
             android:name=".notification.Notification"
             android:exported="false" />
         <activity
@@ -37,10 +44,9 @@
         <activity
             android:name=".bookcoach.BookCoach"
             android:exported="false"
-            android:theme="@style/Theme.VideoCall" />
-        <activity
-            android:name=".schedule.ScheduleActivity"
-            android:exported="false" />
+            android:theme="@style/Theme.VideoCall" /> <!-- <activity -->
+        <!-- android:name=".schedule.ScheduleActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".profile.ProfileActivity"
             android:exported="false" /> <!-- <activity -->
@@ -50,10 +56,19 @@
             android:name=".ui.CallActivity"
             android:exported="false" />
         <activity
-            android:name=".home.HomeActivity"
+            android:name=".ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".Message.MessageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Message.TabActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Message.MainLoginMessageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.LoginFirst"

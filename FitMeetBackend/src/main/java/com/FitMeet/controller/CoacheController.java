@@ -1,5 +1,6 @@
 package com.FitMeet.controller;
 
+import com.FitMeet.dto.CoachSigupDto;
 import com.FitMeet.dto.CoacheDto;
 import com.FitMeet.dto.StudentDto;
 import com.FitMeet.exception.NotFoundException;
@@ -39,6 +40,7 @@ public class CoacheController {
     @ResponseBody
     public ResponseEntity<Coache> login(@RequestBody CoacheDto userDto) throws NotFoundException {
        Coache coache=coacheServiceImpl.logincoach(userDto);
+
         return ResponseEntity.ok(coache);
     }
     @GetMapping("/getlistcoachchat")
@@ -46,4 +48,14 @@ public class CoacheController {
         System.out.println(student_id);
         return ResponseEntity.ok(coacheRepository.findListCoachByStudentId(student_id));
     }
+
+    @PostMapping("/coachsignup")
+    @ResponseBody
+    public ResponseEntity<Coache> signup(@RequestBody CoachSigupDto userDto) throws NotFoundException {
+        Coache coache=coacheServiceImpl.signUp(userDto);
+
+        return ResponseEntity.ok(coache);
+    }
+
+
 }

@@ -43,10 +43,10 @@ public class CheckSchedule {
                 studentNotificationServiceImpl.save(studentNotification);
 
                 CoachNotification coachNotification=new CoachNotification();
-                coachNotification.setTitle("Cuộc hẹn với "+schedule.getCoache().getFullname());
+                coachNotification.setTitle("Cuộc hẹn với "+schedule.getStudent().getFullname());
                 coachNotification.setCoache(schedule.getCoache());
                 coachNotification.setCreated_at(today);
-                coachNotification.setContext("Hôm nay có cuộc hẹn rèn luyện với huấn luyện viên. Đừng quên tham gia!");
+                coachNotification.setContext("Hôm nay có cuộc hẹn rèn luyện với học viên. Đừng quên tham gia!");
                 coachNotificationServiceImpl.save(coachNotification);
             }
         }

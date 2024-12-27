@@ -1,6 +1,7 @@
 package com.ravisaharan.videocall.api;
 
 import com.ravisaharan.videocall.dto.CoachDto;
+import com.ravisaharan.videocall.dto.CoachSigupDto;
 import com.ravisaharan.videocall.dto.StudentDto;
 import com.ravisaharan.videocall.model.CoachNotification;
 import com.ravisaharan.videocall.model.Coache;
@@ -48,4 +49,7 @@ public interface ApiServiceCoach {
 
     @POST("/coachlogin")
     Call<Coache> loginCoach(@Body CoachDto student);
+
+    @POST("/coachsignup")
+    Call<Coache> signUpCoach(@Body CoachSigupDto student);
 }

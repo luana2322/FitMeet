@@ -73,7 +73,7 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
 
 
         call_icon = findViewById(R.id.callvideoicon);
-        nameChat=findViewById(R.id.tv_title);
+        nameChat = findViewById(R.id.tv_title);
         apiServiceCoach = ApiClient.getRetrofitInstance().create(ApiServiceCoach.class);
         apiServiceStudent = ApiClient.getRetrofitInstance().create(ApiServiceStudent.class);
 
@@ -101,29 +101,19 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
             fetchnameCallforStudent(id_people_call, () -> {
                 nameChat.setText(callName);
                 init(callName);
-                // Thực hiện hành động khi đã có callName
-//                Toast.makeText(this, "Coach Name: " + callName, Toast.LENGTH_SHORT).show();
             });
         }
-//initlogin(callName);
 
-//        call_icon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Xử lý khi ImageView được click
-//                init(callName);
-//            }
-//        });
 
     }
 
 
     public void init(String username) {
-        mainRepository=MainRepository.getInstance();
+        mainRepository = MainRepository.getInstance();
 
-        callBinding.callvideoicon.setOnClickListener(v->{
+        callBinding.callvideoicon.setOnClickListener(v -> {
             //make call request
-            mainRepository.sendCallRequest(username,()->{
+            mainRepository.sendCallRequest(username, () -> {
                 Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
             });
         });
@@ -150,6 +140,7 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
 //                    callBinding.incomingNameTV.setText(text);
                     callBinding.tvHeader.setVisibility(View.GONE);
                     callBinding.incomingCallLayout.setVisibility(View.VISIBLE);
+
                     callBinding.acceptButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -203,76 +194,7 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
 
     }
 
-//    public void init(){
-//        mainRepository=MainRepository.getInstance();
-//        callBinding.callBtn.setOnClickListener(v->{
-//            //make call request
-//            mainRepository.sendCallRequest(callBinding.targetUserNameEt.getText().toString(),()->{
-//                Toast.makeText(this, "Couldn't find the above target", Toast.LENGTH_SHORT).show();
-//            });
-//        });
-//
-//        mainRepository.initLocalView(callBinding.localView);
-//        mainRepository.initRemoteView(callBinding.remoteView);
-//        mainRepository.listener=this;
-//
-//        mainRepository.subscribeForLatestEvent(data->{
-//            if(data.getType()== DataModelType.StartCall) {
-//                runOnUiThread(()->{
-//                    String text = data.getSender() + " is calling you..";
-//                    callBinding.incomingNameTV.setText(text);
-//                    callBinding.incomingCallLayout.setVisibility(View.VISIBLE);
-//                    callBinding.acceptButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            //start call
-//                            mainRepository.startCall(data.getSender());
-//                            callBinding.incomingCallLayout.setVisibility(View.GONE);
-//                        }
-//                    });
-//                    callBinding.rejectButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            callBinding.incomingCallLayout.setVisibility(View.GONE);
-//                        }
-//                    });
-//                });
-//            }
-//        });
-//
-//        callBinding.switchCameraButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mainRepository.switchCamera();
-//            }
-//        });
-//
-//        callBinding.micButton.setOnClickListener(v->{
-//            if(isMicMuted){
-//                callBinding.micButton.setImageResource(R.drawable.ic_baseline_mic_off_24);
-//            }else{
-//                callBinding.micButton.setImageResource(R.drawable.ic_baseline_mic_24);
-//            }
-//            mainRepository.toggleAudio(isMicMuted);
-//            isMicMuted=!isMicMuted;
-//        });
-//
-//        callBinding.videoButton.setOnClickListener(v->{
-//            if(isCameraMuted){
-//                callBinding.videoButton.setImageResource(R.drawable.ic_baseline_videocam_off_24);
-//            }else{
-//                callBinding.videoButton.setImageResource(R.drawable.ic_baseline_videocam_24);
-//            }
-//            mainRepository.toggleVideo(isCameraMuted);
-//            isCameraMuted=!isCameraMuted;
-//        });
-//
-//        callBinding.endCallButton.setOnClickListener(v->{
-//            mainRepository.endCall();
-//            finish();
-//        });
-//
-//    }
+
     @Override
     public void webrtcConnected() {
         runOnUiThread(() -> {
@@ -361,26 +283,5 @@ public class ChatContent extends AppCompatActivity implements MainRepository.Lis
 
     }
 
-    public void initlogin(String username) {
-        mainRepository = MainRepository.getInstance();
-
-
-        PermissionX.init(this).
-                permissions(android.Manifest.permission.CAMERA, android.Manifest.permission.RECORD_AUDIO).
-                request(new RequestCallback() {
-                    @Override
-                    public void onResult(boolean allGranted, @NonNull List<String> grantedList, @NonNull List<String> deniedList) {
-                        if (allGranted) {
-                            //login in here
-                            mainRepository.login(username, getApplicationContext(), () -> {
-                                //if successful then move to call activity
-
-                            });
-                        }
-                    }
-                });
-
-
-    }
 
 }

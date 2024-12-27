@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/userItemRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    >
+
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/userNameTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:layout_marginLeft="15dp"-->
+<!--        android:text="@string/user_name"-->
+<!--        android:textSize="20sp" />-->
+
+<!-- start test   -->
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userProfileImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_launcher" />
+        <!--status on image-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/statusOnImageView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/userNameTextView"
+            android:layout_marginStart="-15dp"
+            android:layout_marginLeft="-15dp"
+            android:layout_marginTop="44dp"
+            android:layout_toEndOf="@id/userProfileImageView"
+            android:layout_toRightOf="@+id/userProfileImageView"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="gone"
+            app:civ_border_color="#32CD32"
+            app:civ_border_width="10dp" />
+        <!--status off image-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/statusOffImageView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/userNameTextView"
+            android:layout_marginStart="-15dp"
+            android:layout_marginLeft="-15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/userProfileImageView"
+            android:layout_toRightOf="@+id/userProfileImageView"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="gone"
+            app:civ_border_color="#bfbfbf"
+            app:civ_border_width="10dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@+id/userProfileImageView"
+            android:layout_toRightOf="@+id/userProfileImageView"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eyal Ofer"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/user_description"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="Eion Morgan is a dedicated pediatrician with over 15..."
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="80dp"
+
+        />
+
+<!-- end test -->
+
+
+</RelativeLayout>

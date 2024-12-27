@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ravisaharan.videocall.ApiClient;
+import com.ravisaharan.videocall.Message.TabActivity;
 import com.ravisaharan.videocall.adapter.CoachAdapterChat;
 import com.ravisaharan.videocall.adapter.StudentAdapterChat;
 import com.ravisaharan.videocall.api.ApiServiceCoach;
@@ -148,7 +149,7 @@ public class Chat extends AppCompatActivity {
                         @Override
                         public void onEdit(Student student) {
 
-                            Intent intent = new Intent(Chat.this, ChatContent.class);
+                            Intent intent = new Intent(Chat.this, TabActivity.class);
 
                             intent.putExtra("studentName",String.valueOf(student.getStudent_id()));
                             startActivity(intent);
@@ -187,7 +188,7 @@ public class Chat extends AppCompatActivity {
                         @Override
                         public void onEdit(Coache coache) {
 
-                            Intent intent1 = new Intent(Chat.this, ChatContent.class);
+                            Intent intent1 = new Intent(Chat.this, TabActivity.class);
 //                            Toast.makeText(Chat.this, "adscss"+ String.valueOf(coache.getCoachId()), Toast.LENGTH_SHORT).show();
                             intent1.putExtra("coachName", String.valueOf(coache.getCoachId()));
                             startActivity(intent1);

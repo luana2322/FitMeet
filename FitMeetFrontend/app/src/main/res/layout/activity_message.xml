@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e6e6"
+    tools:context=".Message.MessageActivity">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.CallActivity">
+        <LinearLayout
+            android:id="@+id/incomingCallLayout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@android:color/black">
+
+            <!-- Caller Profile Picture -->
+            <ImageView
+                android:id="@+id/caller_profile_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/dog1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:clipToOutline="true"
+                android:elevation="4dp" />
+
+            <!-- Caller Name -->
+            <TextView
+                android:id="@+id/caller_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="John Doe"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <!-- Incoming Call Label -->
+            <TextView
+                android:id="@+id/incoming_call_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Incoming Video Call..."
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <!-- Buttons Container -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- Accept Button -->
+                <ImageButton
+                    android:id="@+id/acceptButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_accept"
+                    android:background="@android:color/transparent" />
+
+                <!-- Reject Button -->
+                <ImageButton
+                    android:id="@+id/rejectButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_reject"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <!-- end test-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/callLayout"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_height="match_parent">
+            <org.webrtc.SurfaceViewRenderer
+                android:id="@+id/remote_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <org.webrtc.SurfaceViewRenderer
+                android:id="@+id/local_view"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_above="@+id/controls"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="16dp" />
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@drawable/curve_background"
+                android:backgroundTint="@android:color/secondary_text_light"
+                android:id="@+id/controls"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/mic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:background="@drawable/circle_background"
+                    app:backgroundTint="@color/cardview_dark_background"
+                    app:srcCompat="@drawable/ic_baseline_mic_off_24" />
+                <ImageView
+                    android:id="@+id/video_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:background="@drawable/circle_background"
+                    app:backgroundTint="@color/cardview_dark_background"
+                    app:srcCompat="@drawable/ic_baseline_videocam_off_24" />
+                <ImageView
+                    android:id="@+id/end_call_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:background="@drawable/circle_background"
+                    app:backgroundTint="@android:color/holo_red_dark"
+                    app:srcCompat="@drawable/ic_baseline_call_end_24" />
+                <ImageView
+                    android:id="@+id/switch_camera_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:background="@drawable/circle_background"
+                    app:backgroundTint="@color/cardview_dark_background"
+                    app:srcCompat="@drawable/ic_baseline_cameraswitch_24" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:background="@drawable/gradient_background"
+        android:padding="16dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/backtohome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Quay lại"/>
+
+            <TextView
+                android:id="@+id/targetUserNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_name"
+                android:textSize="23sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"/>
+
+            <ImageView
+                android:id="@+id/callvideoicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/videocall1_foreground"
+                android:scaleType="centerCrop" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+<!--        <android.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#696969"-->
+<!--            app:theme="@style/ToolbarBackArrowWhite">-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/targetUserNameTextView"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="@string/user_name"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#fff"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp" />&ndash;&gt;-->
+<!--        </android.widget.Toolbar>-->
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/tvHeader"></androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/messageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/messageSendButton"
+            android:layout_toLeftOf="@+id/messageSendButton"
+            android:background="@android:color/transparent"
+            android:hint="Type a message ..." />
+        <ImageButton
+            android:id="@+id/messageSendButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/send"></ImageButton>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

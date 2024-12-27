@@ -1,35 +1,63 @@
 package com.FitMeet.service.serviceImpl;
 
 import com.FitMeet.model.Chat;
+import com.FitMeet.repository.ChatRepository;
 import com.FitMeet.service.ChatService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ChatServiceImpl implements ChatService {
+
+    @Autowired
+    private ChatRepository chatRepository;
+
     @Override
     public List<Chat> findAll() {
-        return null;
+        return chatRepository.findAll();
+    }
+
+
+    @Override
+    public void save(Chat theChat) {
+        chatRepository.save(theChat);
     }
 
     @Override
-    public Chat findById(Long id) {
-        return null;
+    public List<Chat> findBySenderOrReceiver(int senderID, int receiverID) {
+
+        List<Chat> allChats = chatRepository.findAll();
+
+        List<Chat> result = new ArrayList<>();
+
+        for (Chat chat : allChats) {
+
+            if ((chat.getSender() == senderID || chat.getReceiver() == senderID) && (chat.getReceiver() == receiverID || chat.getSender() == receiverID)) {
+                result.add(chat);
+            }
+        }
+
+        return result;
     }
 
     @Override
-    public void deteleById(Long id) {
+    public List<Chat> findByReceiver(int receiverID) {
 
+        List<Chat> allChats = chatRepository.findAll();
+
+        List<Chat> result = new ArrayList<>();
+
+        for (Chat chat : allChats) {
+
+            if (chat.getSender() == receiverID || chat.getReceiver() == receiverID) {
+                result.add(chat);
+            }
+        }
+        return result;
     }
 
-    @Override
-    public Chat save(Chat attachment) {
-        return null;
-    }
 
-    @Override
-    public Chat update(Chat attachment) {
-        return null;
-    }
 }

@@ -7,11 +7,9 @@ import java.util.List;
 public interface ChatService {
     List<Chat> findAll();
 
-    Chat findById(Long id);
+    List<Chat> findBySenderOrReceiver(int senderID, int receiverID);
 
-    void deteleById(Long id);
+    List<Chat> findByReceiver(int receiverID);
 
-    Chat save(Chat attachment);
-
-    Chat update(Chat attachment);
+    void save(Chat theChat);
 }

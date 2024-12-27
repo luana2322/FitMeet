@@ -19,14 +19,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.RequestCallback;
 import com.ravisaharan.videocall.ApiClient;
 import com.ravisaharan.videocall.CoachAdapter;
+import com.ravisaharan.videocall.Message.TabActivity;
 import com.ravisaharan.videocall.R;
 import com.ravisaharan.videocall.api.ApiServiceCoach;
 import com.ravisaharan.videocall.api.ApiServiceStudent;
 import com.ravisaharan.videocall.bookcoach.BookCoach;
+import com.ravisaharan.videocall.config.InternetAddress;
 import com.ravisaharan.videocall.databinding.ActivityLoginBinding;
 import com.ravisaharan.videocall.databinding.ActivityLoginFirstBinding;
 import com.ravisaharan.videocall.dto.CoachDto;
@@ -34,9 +41,15 @@ import com.ravisaharan.videocall.dto.StudentDto;
 import com.ravisaharan.videocall.home.HomeActivity;
 import com.ravisaharan.videocall.model.Coache;
 import com.ravisaharan.videocall.model.Student;
+import com.ravisaharan.videocall.model.User;
 import com.ravisaharan.videocall.repository.MainRepository;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,15 +59,17 @@ public class LoginFirst extends AppCompatActivity {
     private Spinner spinnerRole;
     private EditText usernameEditText;
     private EditText passwordEditText;
+    private EditText txt_register;
     private Button loginButton;
     private ApiServiceCoach apiServiceCoach;
     private ApiServiceStudent apiServiceStudent;
     private Student studentlogged;
     private Coache coachelogged;
     MainRepository mainRepository;
+    private RequestQueue requestQueue;
 
     ActivityLoginFirstBinding loginBinding;
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +85,7 @@ public class LoginFirst extends AppCompatActivity {
         usernameEditText = findViewById(R.id.editTextUsername);
         passwordEditText = findViewById(R.id.editTextPassword);
         loginButton = findViewById(R.id.buttonlogin);
-
+//        txt_register = findViewById(R.id.txt_register);
         setupRoleSpinner();
 
         apiServiceCoach = ApiClient.getRetrofitInstance().create(ApiServiceCoach.class);
@@ -82,6 +97,14 @@ public class LoginFirst extends AppCompatActivity {
                 performLogin();
             }
         });
+
+//        findViewById(R.id.txt_register).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(LoginFirst.this, SignUpActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -220,7 +243,7 @@ public class LoginFirst extends AppCompatActivity {
                                 //login in here
                                 mainRepository.login(username,getApplicationContext(),()->{
                                     //if successful then move to call activity
-
+//                                    Toast.makeText(LoginFirst.this, "in here", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginFirst.this, HomeActivity.class);
 
 
@@ -239,7 +262,6 @@ public class LoginFirst extends AppCompatActivity {
 
 
     }
-
 
 
 

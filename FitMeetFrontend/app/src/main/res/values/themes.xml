@@ -10,7 +10,8 @@
     <style name="AppTheme.Menu" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorControlNormal">@color/white</item>
     </style>
+
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-    <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
     </style>
 </resources>

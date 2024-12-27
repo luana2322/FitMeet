@@ -1,5 +1,6 @@
 package com.FitMeet.controller;
 
+import com.FitMeet.config.CheckSchedule;
 import com.FitMeet.dto.ScheduleDto;
 import com.FitMeet.model.Coache;
 import com.FitMeet.model.Schedule;
@@ -21,13 +22,13 @@ public class ScheduleController {
     private ScheduleServiceImpl scheduleServiceImpl;
 @Autowired
 private ScheduleRepository scheduleRepository;
+private CheckSchedule checkSchedule;
 //    public ResponseEntity<Schedule> addproject(@RequestBody Schedule schedule
 //            , @RequestParam("userId") Long userId) {
     @PostMapping("/createdschedule")
     public ResponseEntity<Schedule> addproject(@RequestBody ScheduleDto schedule) {
-System.out.println("đã vô");
         Schedule projectsaved = scheduleServiceImpl.save(schedule);
-
+checkSchedule.checkschedule();
 
         return ResponseEntity.ok(projectsaved);
     }

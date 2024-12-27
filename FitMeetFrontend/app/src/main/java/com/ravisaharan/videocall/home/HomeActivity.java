@@ -15,12 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ravisaharan.videocall.ApiClient;
 import com.ravisaharan.videocall.CoachAdapter;
+import com.ravisaharan.videocall.Message.TabActivity;
 import com.ravisaharan.videocall.R;
+import com.ravisaharan.videocall.adapter.StudentBookAdapter;
 import com.ravisaharan.videocall.api.ApiServiceCoach;
+import com.ravisaharan.videocall.api.ApiServiceStudent;
 import com.ravisaharan.videocall.bookcoach.BookCoach;
 import com.ravisaharan.videocall.chat.Chat;
 import com.ravisaharan.videocall.databinding.ActivityHomeBinding;
 import com.ravisaharan.videocall.model.Coache;
+import com.ravisaharan.videocall.model.Student;
 import com.ravisaharan.videocall.notification.Notification;
 import com.ravisaharan.videocall.profile.ProfileActivity;
 
@@ -35,8 +39,11 @@ public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding biding;
     private RecyclerView recyclerView;
     private CoachAdapter coachAdapter;
+    private StudentBookAdapter studentBookAdapter;
     private List<Coache> coacheList = new ArrayList<>();
+    private List<Student> studentList = new ArrayList<>();
     private ApiServiceCoach apiService;
+    private ApiServiceStudent apiServiceStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Initialize Retrofit API service
         apiService = ApiClient.getRetrofitInstance().create(ApiServiceCoach.class);
+        apiServiceStudent = ApiClient.getRetrofitInstance().create(ApiServiceStudent.class);
 
 //get session data to phân luồng user
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
@@ -67,9 +75,9 @@ public class HomeActivity extends AppCompatActivity {
 
         if (userId != -1) {
             // Fetch students from API
-            fetchCoaches();
+            fetchforStudent();
         } else {
-            Toast.makeText(this, "Đây là Coach", Toast.LENGTH_SHORT).show();
+            fetchforCoachs(coachId);
         }
 
 
@@ -79,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     if (itemId == R.id.chat) {
-                        Intent intent = new Intent(HomeActivity.this, Chat.class);
+                        Intent intent = new Intent(HomeActivity.this, TabActivity.class);
                         startActivity(intent);
                     } else if (itemId == R.id.profile) {
                         Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);
@@ -98,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    private void fetchCoaches() {
+    private void fetchforStudent() {
         apiService.getCoachs().enqueue(new Callback<List<Coache>>() {
             @Override
             public void onResponse(Call<List<Coache>> call, Response<List<Coache>> response) {
@@ -131,6 +139,44 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Coache>> call, Throwable t) {
+                Toast.makeText(HomeActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("API_ERROR", t.getMessage());
+            }
+        });
+    }
+
+
+
+    private void fetchforCoachs(int coachId) {
+        apiServiceStudent.getListStudentChat((long)coachId).enqueue(new Callback<List<Student>>() {
+            @Override
+            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Gán dữ liệu từ API vào danh sách coach
+                    studentList = response.body();
+                    Toast.makeText(HomeActivity.this, "ok mà"+studentList.size(), Toast.LENGTH_SHORT).show();
+
+                    // Khởi tạo adapter với dữ liệu
+                    studentBookAdapter = new StudentBookAdapter(HomeActivity.this, studentList, new StudentBookAdapter.OnItemActionListener() {
+                        @Override
+                        public void onEdit(Student coache) {
+
+
+                        }
+
+                        @Override
+                        public void onDelete(Student coache) {
+                            Toast.makeText(HomeActivity.this, "Xóa: " + coache.getFullname(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    recyclerView.setAdapter(studentBookAdapter); // Gán adapter cho RecyclerView
+                } else {
+                    Toast.makeText(HomeActivity.this, "Không thể lấy dữ liệu", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Student>> call, Throwable t) {
                 Toast.makeText(HomeActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("API_ERROR", t.getMessage());
             }
