@@ -87,10 +87,12 @@ FITMEET is an Android application designed to help users book personal training 
 ## Screenshots
 
 <p align="left">
-  <img src="image 1.jpg" alt="Home Screen" width="25%"/> 
-  <img src="image2.jpg" alt="Booking Screen" width="25%"/> 
-  <img src="image3.jpg" alt="Chat" width="25%"/> 
-  <img src="image4.jpg" alt="Video Call" width="25%"/> 
+  <img src="image 1.jpg" alt="Home Screen" width="30%"/> 
+  <img src="image2.jpg" alt="Booking Screen" width="30%"/> 
+  <img src="image3.jpg" alt="Chat" width="30%"/> 
+  <img src="image4.jpg" alt="Video Call" width="30%"/> 
+  <img src="image5.jpg" alt="BookCoach" width="30%"/> 
+  <img src="image6.jpg" alt="Notification" width="30%"/> 
 </p>
 
 ---
@@ -105,7 +107,7 @@ FITMEET is an Android application designed to help users book personal training 
   <a href="https://webrtc.org" target="_blank" rel="noreferrer"> <img src="https://webrtc.github.io/webrtc-org/assets/images/webrtc-logo-vert-retro-255x305.png" alt="webrtc" width="40" height="40"/> </a>
   <a href="https://firebase.google.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a>
   <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/intellij/intellij-original.svg" alt="intellij" width="40" height="40"/> </a>
-  <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Android_Studio_Trademark.svg" alt="android-studio" width="40" height="40"/> </a>
+  <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Android_Studio_Logo_2024.svg/800px-Android_Studio_Logo_2024.svg.png" alt="android-studio" width="40" height="40"/> </a>
 </p>
 
 
