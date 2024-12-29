@@ -1,10 +1,16 @@
-# Created by https://www.toptal.com/developers/gitignore/api/ssh
-# Edit at https://www.toptal.com/developers/gitignore?templates=ssh
-
-### SSH ###
-**/.ssh/id_*
-**/.ssh/*_id_*
-**/.ssh/known_hosts
-
-# End of https://www.toptal.com/developers/gitignore/api/ssh
+# Bỏ qua tệp cấu hình
 google-services.json
+
+# Bỏ qua thư mục build
+/build/
+
+# Bỏ qua tệp hệ điều hành
+.DS_Store
+
+# Bỏ qua tệp IDE
+*.iml
+.idea/
+
+# Bỏ qua tệp log và tạm thời
+*.log
+*.tmp
