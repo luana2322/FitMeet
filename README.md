@@ -87,22 +87,25 @@ FITMEET is an Android application designed to help users book personal training 
 ## Screenshots
 
 <p align="left">
-  <img src="screenshot1.png" alt="Home Screen" width="25%"/> 
-  <img src="screenshot2.png" alt="Booking Screen" width="25%"/> 
-  <img src="screenshot3.png" alt="Chat" width="25%"/> 
-  <img src="screenshot4.png" alt="Video Call" width="25%"/> 
+  <img src="image 1.jpg" alt="Home Screen" width="25%"/> 
+  <img src="image2.jpg" alt="Booking Screen" width="25%"/> 
+  <img src="image3.jpg" alt="Chat" width="25%"/> 
+  <img src="image4.jpg" alt="Video Call" width="25%"/> 
 </p>
 
 ---
 
 ## Languages and Tools
 
+
 <p align="left">
   <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/> </a>
   <a href="https://spring.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a>
   <a href="https://www.mysql.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a>
-  <a href="https://webrtc.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/webrtc/webrtc-icon.svg" alt="webrtc" width="40" height="40"/> </a>
+  <a href="https://webrtc.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/webrtc/webrtc-ar21.svg" alt="webrtc" width="40" height="40"/> </a>
   <a href="https://firebase.google.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a>
+  <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/intellij/intellij-original.svg" alt="intellij" width="40" height="40"/> </a>
+  <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Android_Studio_Trademark.svg" alt="android-studio" width="40" height="40"/> </a>
 </p>
 
 
@@ -116,6 +119,10 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Contact
 
-- **Email:** fitmeet.support@example.com
-- **GitHub:** [FitMeet](https://github.com/your-username/FITMEET)
+- **Email:** nguyenbaoluanthai@gmail.com
+- **GitHub:** [FitMeet](https://github.com/luana2322/FITMEET)
+
+
+
+
 
