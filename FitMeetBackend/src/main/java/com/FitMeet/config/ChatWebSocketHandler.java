@@ -21,7 +21,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String messagePayload = message.getPayload();
-        System.out.println("Nhận tin nhắn: " + messagePayload);
+        System.out.println("Message Receive: " + messagePayload);
 
         // Kiểm tra nếu tin nhắn có vẻ là một đối tượng JSON hợp lệ
         if (isJson(messagePayload)) {
